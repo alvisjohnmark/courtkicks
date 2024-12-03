@@ -1,13 +1,6 @@
 <template>
   <section class="bg-white h-screen mx-auto font-arimo">
-    <nav class="p-8 flex items-center">
-      <img src="/logo.jpg" alt="Logo" class="w-12 h-auto mr-2" />
-      <h2 class="font-arimo text-black font-semibold text-2xl">
-        Court & Kicks
-      </h2>
-    </nav>
-
-    <div class="flex flex-col justify-center space-y-2">
+    <div class="flex flex-col justify-center space-y-2 mt-12">
       <div class="flex justfy-around items-center px-10 relative">
         <h1 class="text-[11rem] font-semibold leading-none ml-64">DEFY</h1>
         <img
@@ -71,20 +64,21 @@
       </h1>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 m-12 pt-12">
-
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 m-12 pt-12"
+    >
       <div class="bg-black border border-white rounded-lg p-6">
         <img
           src="/s2.jpg"
           alt="Jordan 11 Concord"
           class="w-full h-auto rounded-md"
         />
-        <br>
+        <br />
         <div class="flex justify-between items-center mt-4">
           <h2 class="text-lg font-semibold">Jordan 11 Concord</h2>
           <p class="text-lg font-bold">$500.00</p>
         </div>
-        <hr>
+        <hr />
       </div>
 
       <div class="bg-black border border-white rounded-lg p-6">
@@ -93,12 +87,12 @@
           alt="Tatum 2 Legacy"
           class="w-full h-auto rounded-md"
         />
-        <br>
+        <br />
         <div class="flex justify-between items-center mt-4">
           <h2 class="text-lg font-semibold">Tatum 2 Legacy</h2>
           <p class="text-lg font-bold">$150.00</p>
         </div>
-        <hr>
+        <hr />
       </div>
 
       <div class="bg-black border border-white rounded-xl p-6">
@@ -107,12 +101,12 @@
           alt="Kobe Protro 5"
           class="w-full h-auto rounded-md"
         />
-        <br>
+        <br />
         <div class="flex justify-between items-center mt-4">
           <h2 class="text-lg font-semibold pb-2.5">Kobe Protro 5</h2>
           <p class="text-lg font-bold">$1000.00</p>
         </div>
-        <hr>
+        <hr />
       </div>
     </div>
   </section>
@@ -120,9 +114,9 @@
   <section
     class="bg-heroBg h-screen text-white font-arimo px-16 py-8 flex justify-between items-center"
   >
-    <div class="font-extrasemibol">
+    <nav class="font-extrasemibol">
       <h1 class="text-9xl leading-tight">Court <br />& Kicks</h1>
-    </div>
+    </nav>
     <div class="space-y-8 max-w-xl">
       <div>
         <p class="text-3xl">
@@ -165,6 +159,7 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style lang="scss" scoped></style>
