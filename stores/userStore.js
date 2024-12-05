@@ -1,34 +1,29 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#app";
 import { doc, setDoc, getDoc, updateDoc, collection } from "firebase/firestore";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import bcrypt from "bcryptjs";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: null, // User data will be stored here, including photoUrl
+    user: null,
   }),
 
   actions: {
-    // Register user and save photo URL to Firestore
-    async register(username, email, password, file) {
+    async register(username, email, password) {
       const { $firebase } = useNuxtApp();
       const db = $firebase.db;
-      const storage = getStorage();
-
       const userRef = doc(collection(db, "users"), username);
 
-      const userData = { username, email, password };
-
       try {
-        // Add photoUrl to user data before storing
-        await setDoc(userRef, { ...userData });
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+        const userData = {
+          username,
+          email,
+          password: hashedPassword,
+        };
 
-        this.user = { username, email }; // Save to Pinia store
+        await setDoc(userRef, { ...userData });
+        this.user = { username, email };
         return true;
       } catch (error) {
         console.error("Error registering user:", error);
@@ -36,7 +31,6 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    // Login user (without handling photo URL here)
     async login(username, password) {
       const { $firebase } = useNuxtApp();
       const db = $firebase.db;
@@ -44,19 +38,32 @@ export const useUserStore = defineStore("user", {
 
       try {
         const userSnap = await getDoc(userRef);
-        if (userSnap.exists() && userSnap.data().password === password) {
-          const { email } = userSnap.data();
-          this.user = { username, email };
-          return true;
+        if (!userSnap.exists()) {
+          console.error("User not found");
+          throw new Error("Invalid username or password.");
         }
-        throw new Error("Invalid username or password.");
+
+        const userData = userSnap.data();
+        const { email, password: hashedPassword } = userData;
+
+        console.log("Hashed password from Firestore:", hashedPassword);
+
+        // Compare the provided password with the hashed password
+        const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+
+        if (!isPasswordValid) {
+          console.error("Password mismatch");
+          throw new Error("Invalid username or password.");
+        }
+
+        // Login success
+        this.user = { username, email };
+        return true;
       } catch (error) {
-        console.error("Error logging in:", error);
+        console.error("Error during login:", error.message);
         throw new Error("Invalid credentials");
       }
     },
-
-    // Update profile (for editing user details including photo)
     async updateProfile(
       username,
       email,
@@ -70,12 +77,10 @@ export const useUserStore = defineStore("user", {
     ) {
       const { $firebase } = useNuxtApp();
       const db = $firebase.db;
-      const storage = getStorage();
 
       const userRef = doc(db, "users", username);
 
       try {
-        // Update Firestore with the new data
         await updateDoc(userRef, {
           email,
           firstName,
@@ -86,8 +91,6 @@ export const useUserStore = defineStore("user", {
           phoneNumber,
           zipCode,
         });
-
-        // Update user store with the new data
         this.user = {
           username,
           email,
@@ -107,7 +110,6 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    // Logout user
     logout() {
       this.user = null;
     },

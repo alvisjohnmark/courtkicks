@@ -17,7 +17,6 @@
       </NuxtLink>
     </div>
     <div class="flex gap-6 items-center">
-      <NuxtLink to="/products" class="text-black text-lg">Products</NuxtLink>
       <NuxtLink to="/about" class="text-black text-lg">About</NuxtLink>
       <template v-if="isLoggedIn">
         <button class="text-black text-lg" @click="userStore.logout">Logout</button>

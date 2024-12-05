@@ -4,7 +4,6 @@
       Profile
     </h2>
 
-
     <!-- Edit Form -->
     <form @submit.prevent="handleSubmit" class="space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -16,6 +15,7 @@
           >
           <input
             v-model="user.firstName"
+            :placeholder="user.firstName ? '' : 'Not set'"
             type="text"
             id="firstName"
             required
@@ -29,6 +29,7 @@
           >
           <input
             v-model="user.lastName"
+            :placeholder="user.lastName ? '' : 'Not set'"
             type="text"
             id="lastName"
             required
@@ -44,6 +45,7 @@
           >
           <input
             v-model="user.street"
+            :placeholder="user.street ? '' : 'Not set'"
             type="text"
             id="street"
             required
@@ -59,6 +61,7 @@
           >
           <input
             v-model="user.municipality"
+            :placeholder="user.municipality ? '' : 'Not set'"
             type="text"
             id="municipality"
             required
@@ -74,6 +77,7 @@
           >
           <input
             v-model="user.province"
+            :placeholder="user.province ? '' : 'Not set'"
             type="text"
             id="province"
             required
@@ -89,6 +93,7 @@
           >
           <input
             v-model="user.phoneNumber"
+            :placeholder="user.phoneNumber ? '' : 'Not set'"
             type="text"
             id="phoneNumber"
             required
@@ -104,6 +109,7 @@
           >
           <input
             v-model="user.zipCode"
+            :placeholder="user.zipCode ? '' : 'Not set'"
             type="text"
             id="zipCode"
             required
@@ -117,6 +123,7 @@
           >
           <input
             v-model="user.email"
+            :placeholder="user.email ? '' : 'Not set'"
             type="email"
             id="email"
             readonly
@@ -156,7 +163,6 @@ const user = ref({
   province: "",
   phoneNumber: "",
   zipCode: "",
-
 });
 
 // Function to handle loading user data from Firestore
@@ -178,8 +184,6 @@ onMounted(() => {
   loadUserData();
 });
 
-
-// Handle form submission and updating Firestore
 const handleSubmit = async () => {
   const { $firebase } = useNuxtApp();
   const db = $firebase.db;
@@ -194,7 +198,6 @@ const handleSubmit = async () => {
       province: user.value.province,
       phoneNumber: user.value.phoneNumber,
       zipCode: user.value.zipCode,
-      photoUrl: user.value.photoUrl, // Optionally save the new photo URL
     });
 
     alert("Profile updated successfully!");
@@ -205,6 +208,4 @@ const handleSubmit = async () => {
 };
 </script>
 
-<style scoped>
-/* Custom styles can go here */
-</style>
+<style scoped></style>
