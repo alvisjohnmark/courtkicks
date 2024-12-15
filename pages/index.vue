@@ -33,11 +33,12 @@
         <h1 class="text-6xl md:text-[11rem] font-semibold leading-none">
           LIMIT
         </h1>
-        <button
+        <NuxtLink
+        to="/products"
           class="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-black text-black font-semibold text-sm flex items-center justify-center hover:underline mt-4 md:mt-0"
         >
           EXPLORE<br />HERE
-        </button>
+        </NuxtLink>
       </div>
     </div>
   </section>

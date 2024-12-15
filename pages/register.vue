@@ -7,7 +7,7 @@
         class="max-w-md w-full mx-auto p-6 border border-gray-300 rounded-md bg-white"
       >
         <h2 class="text-2xl font-bold text-[#060606] mb-4">Register</h2>
-        <form @submit.prevent="handleRegister" class="space-y-4">
+        <form @submit.prevent="handleRegister" id="handleRegister-form" class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-[#060606]">
               Username:

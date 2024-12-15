@@ -22,7 +22,7 @@
             <li><strong>Customer-Centric:</strong> We prioritize your satisfaction with easy returns and excellent customer service.</li>
             <li><strong>Affordable Luxury:</strong> Enjoy premium quality without breaking the bank.</li>
           </ul>
-          <br />
+          <br />``
           Step up your style and shop with confidence at <strong>Court and Kicks</strong>. Whether you’re
           looking for everyday comfort or a statement piece, we’ve got your feet covered!
           <br /><br />
@@ -37,7 +37,7 @@
         <h2 class="text-4xl font-semibold text-dark mb-12">
           Meet Our Founders
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-12">
           <div class="team-member hover:scale-105 transition-transform">
             <img
               src="/mitchell.jpg"
@@ -75,6 +75,18 @@
               As operations manager, Jairus oversees seamless logistics and
               customer service, ensuring your shopping journey is effortless and
               enjoyable.
+            </p>
+          </div>
+          <div class="team-member hover:scale-105 transition-transform">
+            <img
+              src="/ian.jpg"
+              alt="ian"
+              class="rounded-full w-56 h-56 object-cover mx-auto shadow-lg"
+            />
+            <h3 class="text-xl font-medium mt-6 text-dark">Ian</h3>
+            <p class="text-sm text-dark/70 mt-2">
+              As Design manager, Ian oversees overall creativity and design, ensuring your shopping journey is fun and
+              user friendly.
             </p>
           </div>
         </div>

@@ -48,15 +48,13 @@ export const useUserStore = defineStore("user", {
 
         console.log("Hashed password from Firestore:", hashedPassword);
 
-        // Compare the provided password with the hashed password
+  
         const isPasswordValid = await bcrypt.compare(password, hashedPassword);
 
         if (!isPasswordValid) {
           console.error("Password mismatch");
           throw new Error("Invalid username or password.");
         }
-
-        // Login success
         this.user = { username, email };
         return true;
       } catch (error) {

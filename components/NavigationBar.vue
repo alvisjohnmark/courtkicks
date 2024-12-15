@@ -17,9 +17,15 @@
       </NuxtLink>
     </div>
     <div class="flex gap-6 items-center">
+      <NuxtLink to="/products" class="text-black text-lg">Products</NuxtLink>
       <NuxtLink to="/about" class="text-black text-lg">About</NuxtLink>
       <template v-if="isLoggedIn">
-        <button class="text-black text-lg" @click="userStore.logout">Logout</button>
+        <button class="text-black text-lg" @click="userStore.logout">
+          Logout
+        </button>
+        <NuxtLink to="/cart" class="flex items-center text-black text-lg">
+          <ShoppingCart :size="32" :stroke-width="1" />
+        </NuxtLink>
         <NuxtLink to="/profile" class="flex items-center text-black text-lg">
           <User :size="32" :stroke-width="1" />
         </NuxtLink>
@@ -39,13 +45,13 @@
 <script setup>
 import { computed } from "vue";
 import { useUserStore } from "~/stores/userStore";
-import { User } from 'lucide-vue-next';
+import { User, ShoppingCart } from "lucide-vue-next";
 
 const logoPath = "/logo.jpg";
 const cacheBuster = new Date().getTime();
 
 const userStore = useUserStore();
-const isLoggedIn = computed(() => userStore.user !== null); 
+const isLoggedIn = computed(() => userStore.user !== null);
 </script>
 
 <style scoped></style>
